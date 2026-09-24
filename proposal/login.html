@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Registrasi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #4776e6, #8e54e9);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form h2 {
+      margin-bottom: 20px;
+      color: #4776e6;
+      text-align: center;
+    }
+
+    .form input {
+      width: calc(100% - 24px);
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 14px;
+    }
+
+    .form input:focus {
+      border-color: #8e54e9;
+      outline: none;
+      box-shadow: 0 0 5px rgba(142, 84, 233, 0.5);
+    }
+
+    .form button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #4776e6, #8e54e9);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .form button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .toggle-link a {
+      text-decoration: none;
+      color: #4776e6;
+      font-weight: 500;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 320px;
+      margin: auto;
+      animation: zoomIn 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-content h2 {
+      color: #4776e6;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      margin: 10px 0 20px;
+      font-size: 15px;
+    }
+
+    .modal-content .fa-check-circle {
+      font-size: 48px;
+      color: #4BB543;
+      margin-bottom: 15px;
+    }
+
+    .modal-content button {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #4776e6, #8e54e9);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background: #7648d3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container" id="login-container">
+  <div class="form" id="login-form">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateLogin(event)">
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit">Masuk</button>
+      <div class="error" id="login-error" style="display: none;"></div>
+    </form>
+    <div class="toggle-link">
+      Belum punya akun? <a href="#" onclick="showRegister()">Daftar</a>
+    </div>
+  </div>
+</div>
+
+<div class="form-container" id="register-container" style="display: none;">
+  <div class="form" id="register-form">
+    <h2>Registrasi</h2>
+    <form id="registerForm" onsubmit="return registerUser(event)">
+      <input type="text" placeholder="Nama Lengkap" name="fullname" required>
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="email" placeholder="Email" name="email" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit">Daftar</button>
+      <div class="error" id="register-error" style="display: none;"></div>
+    </form>
+    <div class="toggle-link">
+      Sudah punya akun? <a href="#" onclick="showLogin()">Masuk</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for success message -->
+<div class="modal" id="success-modal">
+  <div class="modal-content">
+    <i class="fas fa-check-circle"></i>
+    <h2>Registrasi Berhasil!</h2>
+    <p>Silakan login untuk melanjutkan.</p>
+    <button onclick="closeModal()">Tutup</button>
+  </div>
+</div>
+
+<script>
+  const registeredUsers = {};
+
+  function registerUser(event) {
+    event.preventDefault();
+    const fullname = event.target.fullname.value;
+    const username = event.target.username.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const registerError = document.getElementById('register-error');
+
+    if (registeredUsers[username]) {
+      registerError.textContent = 'Username sudah terdaftar!';
+      registerError.style.display = 'block';
+      return false;
+    }
+
+    registeredUsers[username] = { fullname, email, password };
+    showModal();
+    event.target.reset();
+    return false;
+  }
+
+  function validateLogin(event) {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    const loginError = document.getElementById('login-error');
+
+    if (registeredUsers[username] && registeredUsers[username].password === password) {
+      window.location.href = 'home.html';
+    } else {
+      loginError.textContent = 'Username atau password salah!';
+      loginError.style.display = 'block';
+    }
+  }
+
+  function showRegister() {
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('register-container').style.display = 'block';
+  }
+
+  function showLogin() {
+    document.getElementById('login-container').style.display = 'block';
+    document.getElementById('register-container').style.display = 'none';
+  }
+
+  function showModal() {
+    document.getElementById('success-modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('success-modal').style.display = 'none';
+    showLogin();
+  }
+</script>
+
+</body>
+</html>

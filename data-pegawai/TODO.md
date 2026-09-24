@@ -1,0 +1,10 @@
+- [x] Update profile dropdown buttons to trigger modals instead of links
+- [x] Add profile modal with user details
+- [x] Add settings modal with theme, language, and notification options
+- [x] Add logout confirmation modal
+- [x] Implement settings functionality to apply changes when OK is pressed
+- [x] Add JavaScript functions for loading and applying settings
+- [x] Add localStorage support for persisting settings
+- [x] Add theme switching (light/dark mode) with improved styling
+- [x] Add language switching (Indonesian/English)
+- [x] Add notification toggle

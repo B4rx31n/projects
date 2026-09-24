@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bariqh Arrasyid | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#6366f1',
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                        sm: '4px',
+                        md: '8px',
+                        lg: '12px',
+                        xl: '16px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+        }
+        
+        .glass {
+            background: rgba(15, 15, 15, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+        }
+        
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-200 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed w-full glass z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-gradient">Jack</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition hover:bg-white/5">Home</a>
+                        <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition hover:bg-white/5">About</a>
+                        <a href="#skills" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition hover:bg-white/5">Skills</a>
+                        <a href="#projects" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition hover:bg-white/5">Projects</a>
+                        <a href="#contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition hover:bg-white/5">Contact</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition">
+                        <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </button>
+                    <button class="md:hidden p-2 rounded-full hover:bg-white/10 transition" id="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden glass" id="mobile-menu">
+            <div class="px-5 pt-2 pb-4 space-y-2">
+                <a href="#home" class="block px-4 py-2 rounded-md font-medium text-gray-300 hover:text-white hover-bg-white/5 transition">Home</a>
+                <a href="#about" class="block px-4 py-2 rounded-md font-medium text-gray-300 hover:text-white hover-bg-white/5 transition">About</a>
+                <a href="#skills" class="block px-4 py-2 rounded-md font-medium text-gray-300 hover:text-white hover-bg-white/5 transition">Skills</a>
+                <a href="#projects" class="block px-4 py-2 rounded-md font-medium text-gray-300 hover:text-white hover-bg-white/5 transition">Projects</a>
+                <a href="#contact" class="block px-4 py-2 rounded-md font-medium text-gray-300 hover:text-white hover-bg-white/5 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-40 relative overflow-hidden">
+        <div class="absolute inset-0 hero-gradient opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-16 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Hi, I'm <br>
+                        <span class="text-gradient">Bariqh Arrasyid</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-400">Creative Frontend Developer</h2>
+                    <p class="text-lg mb-8 text-gray-400 leading-relaxed">
+                        Crafting immersive digital experiences with modern web technologies. 
+                        I specialize in building performant, accessible, and visually stunning applications.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="glass px-6 py-3 border border-transparent hover:border-primary/30 text-white font-medium rounded-lg transition-all duration-300 hover-glow flex items-center space-x-2">
+                            <span>View Projects</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-medium rounded-lg transition-all duration-300 hover-glow flex items-center space-x-2">
+                            <span>Contact Me</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-12 flex space-x-6">
+                        <a href="https://github.com/JackChnnn" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="http://tiktok.com/@_jckchnnn" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Jack%E3%82%AF" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_jck.chn?igsh=Y3JkMnF2Y3o1azlr" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-purple-600/30 rounded-full blur-md group-hover:blur-lg transition-all duration-500"></div>
+                        <img src="Jack.jpg" alt="Bariqh Arrasyid" class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white/10 shadow-2xl z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 section">
+            <div class="text-center mb-16">
+                <span class="text-primary text-sm uppercase tracking-wider">Get to Know Me</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">About <span class="text-gradient">Jack</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/3 mb-10 md:mb-0">
+                    <div class="glass rounded-2xl overflow-hidden p-1 hover-glow transition-all duration-500">
+                        <img src="J.gif" alt="Bariqh Arrasyid working on a modern laptop setup with multiple monitors in a dark themed home office" class="rounded-2xl w-full">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl md:text-3xl font-semibold mb-4">Who I Am</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        I'm Bariqh Arrasyid, a passionate Frontend Developer with 3 years of experience building modern web applications. 
+                        Using technology, I create seamless digital experiences that are both visually stunning and technically robust.
+                    </p>
+                    
+                    <h3 class="text-2xl md:text-3xl font-semibold mb-4">What I Do</h3>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        From concept to deployment, I deliver complete solutions tailored to specific needs. My focus is on creating performant, 
+                        accessible, and scalable applications using the latest technologies while maintaining clean and maintainable code.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="glass rounded-lg p-6 hover-glow transition-all duration-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-semibold">Frontend Development</h4>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                Building responsive and interactive user interfaces with React, Vue, and modern CSS frameworks.
+                            </p>
+                        </div>
+                        <div class="glass rounded-lg p-6 hover-glow transition-all duration-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-semibold">Backend Development</h4>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                Building scalable server-side applications with Laravel, Express, and various database technologies.
+                            </p>
+                        </div>
+                        <div class="glass rounded-lg p-6 hover-glow transition-all duration-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-semibold">UI/UX Design</h4>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                Creating beautiful and intuitive user interfaces with focus on user experience and accessibility.
+                            </p>
+                        </div>
+                        <div class="glass rounded-lg p-6 hover-glow transition-all duration-500">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-semibold">Mobile Development</h4>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                Building cross-platform mobile applications using Kotlin and Flutter frameworks.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <a href="cv.pdf" download class="inline-flex items-center glass px-6 py-3 border border-white/10 hover:border-primary/30 text-white font-medium rounded-lg transition-all duration-500 hover-glow">
+                        <span>Download CV</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gradient-to-b from-black/30 to-transparent">
+        <div class="max-w-7xl mx-auto px-6 section">
+            <div class="text-center mb-16">
+                <span class="text-primary text-sm uppercase tracking-wider">What I'm Best At</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">My <span class="text-gradient">Skills</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-3xl mx-auto">
+                    Through years of experience and continuous learning, I've mastered a diverse set of technologies and tools to deliver high-quality solutions.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="glass rounded-2xl p-8 hover-glow transition-all duration-500">
+                    <div class="flex items-center mb-8">
+                        <div class="bg-primary/10 p-2 rounded-lg mr-4">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-semibold">Technical Skills</h3>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">HTML/CSS</span>
+                                <span class="text-primary">95%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">JavaScript</span>
+                                <span class="text-primary">50%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Kotlin</span>
+                                <span class="text-primary">85%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Laravel</span>
+                                <span class="text-primary">70%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies -->
+                <div class="glass rounded-2xl p-8 hover-glow transition-all duration-500">
+                    <div class="flex items-center mb-8">
+                        <div class="bg-primary/10 p-2 rounded-lg mr-4">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-semibold">Tools & Technologies</h3>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Git/GitHub</span>
+                                <span class="text-primary">50%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Chat GPT</span>
+                                <span class="text-primary">100%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">DeepSeek</span>
+                                <span class="text-primary">100%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">BlackBox</span>
+                                <span class="text-primary">100%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-primary to-purple-600 h-2 rounded-full skill-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 glass rounded-2xl p-8 hover-glow transition-all duration-500">
+                <h3 class="text-xl md:text-2xl font-semibold mb-8">Other Skills</h3>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Tailwind CSS</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">GraphQL</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Redux</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Jest</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Vue.js</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">PostgreSQL</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">REST API</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Webpack</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Figma</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-sm text-gray-300 border border-white/5">Postman</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 section">
+            <div class="text-center mb-16">
+                <span class="text-primary text-sm uppercase tracking-wider">My Recent Work</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Featured <span class="text-gradient">Projects</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-3xl mx-auto">
+                    Here are some of my most recent projects that showcase my skills and capabilities.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover-glow">
+                    <div class="relative overflow-hidden h-60 flex items-center justify-center bg-white">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="Logo HTML CSS JS" class="h-32 w-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Landing Page Website</h3>
+                        <p class="text-gray-400 text-sm mb-4">Website landing page interaktif yang dibuat dengan HTML, CSS, dan JavaScript. Menampilkan animasi smooth, layout responsif, dan desain modern untuk memperkenalkan produk atau jasa secara profesional.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">HTML</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">CSS</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">JS</span>
+                        </div>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <button onclick="openProjectModal('project1')" class="text-gradient hover:underline transition font-medium">View Details</button>
+                            <a href="https://github.com/JackChnnn/landing-page-website" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="splash screen.html" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover-glow">
+                    <div class="relative overflow-hidden h-60 flex items-center justify-center bg-white">
+                        <img src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg" alt="Logo Laravel" class="h-32 w-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Laravel E-commerce</h3>
+                        <p class="text-gray-400 text-sm mb-4">Aplikasi toko online dengan Laravel yang mendukung manajemen produk, keranjang belanja, pembayaran, dan dashboard admin. Dirancang untuk kemudahan penggunaan dan keamanan transaksi.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">Laravel</span>
+                        </div>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <button onclick="openProjectModal('project2')" class="text-gradient hover:underline transition font-medium">View Details</button>
+                            <a href="https://github.com/JackChnnn/laravel-ecommerce" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="download inventory-system.html" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover-glow">
+                    <div class="relative overflow-hidden h-60 flex items-center justify-center bg-white">
+                        <img src="https://cdn.worldvectorlogo.com/logos/kotlin-1.svg" alt="Logo Kotlin" class="h-32 w-32 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Kotlin Android App</h3>
+                        <p class="text-gray-400 text-sm mb-4">Aplikasi Android yang dibangun menggunakan Kotlin, menawarkan UI intuitif, notifikasi real-time, dan integrasi API untuk pengalaman pengguna yang maksimal.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">Kotlin</span>
+                        </div>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <button onclick="openProjectModal('project3')" class="text-gradient hover:underline transition font-medium">View Details</button>
+                            <a href="https://github.com/JackChnnn/kotlin-android-app" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="download Game Store.html" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tambahkan animasi spectrum (gelombang warna-warni) di bawah section Projects, tanpa menghapus animasi lain -->
+    <div class="relative w-full overflow-hidden pointer-events-none select-none" style="height: 60px; margin-top: -30px;">
+        <svg class="absolute left-0 top-0 w-full h-full" viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="spectrum-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#6366f1">
+                        <animate attributeName="stop-color" values="#6366f1;#a855f7;#6366f1" dur="6s" repeatCount="indefinite"/>
+                    </stop>
+                    <stop offset="100%" stop-color="#a855f7">
+                        <animate attributeName="stop-color" values="#a855f7;#6366f1;#a855f7" dur="6s" repeatCount="indefinite"/>
+                    </stop>
+                </linearGradient>
+            </defs>
+            <path id="spectrumPath"
+                d="M0,30 Q360,60 720,30 T1440,30 L1440,60 L0,60 Z"
+                fill="url(#spectrum-gradient)">
+                <animate attributeName="d"
+                    dur="8s"
+                    repeatCount="indefinite"
+                    values="
+                        M0,30 Q360,60 720,30 T1440,30 L1440,60 L0,60 Z;
+                        M0,40 Q360,0 720,40 T1440,40 L1440,60 L0,60 Z;
+                        M0,30 Q360,60 720,30 T1440,30 L1440,60 L0,60 Z
+                    "
+                />
+            </path>
+        </svg>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-black/30 to-transparent">
+        <div class="max-w-7xl mx-auto px-6 section">
+            <div class="text-center mb-16">
+                <span class="text-primary text-sm uppercase tracking-wider">Get In Touch</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Contact <span class="text-gradient">Me</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-3xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="flex justify-center">
+                <div class="w-full md:w-2/3 lg:w-1/2">
+                    <div class="glass rounded-2xl p-8 hover-glow transition-all duration-500 shadow-xl border border-primary/30">
+                        <h3 class="text-3xl font-bold mb-8 text-gradient">Contact Information</h3>
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-5 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-purple-600/10 border border-primary/20 hover:scale-105 transition">
+                                <div class="flex-shrink-0 p-3 bg-primary/20 rounded-full">
+                                    <i class="fas fa-envelope text-primary text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 text-sm">Email</p>
+                                    <p class="text-white font-semibold text-lg tracking-wide">bariqharrasyid@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5 p-4 rounded-xl bg-gradient-to-r from-green-400/10 to-primary/10 border border-green-400/20 hover:scale-105 transition">
+                                <div class="flex-shrink-0 p-3 bg-green-400/20 rounded-full">
+                                    <i class="fas fa-phone-alt text-green-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 text-sm">Phone</p>
+                                    <p class="text-white font-semibold text-lg tracking-wide">+6288742774763</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5 p-4 rounded-xl bg-gradient-to-r from-purple-600/10 to-primary/10 border border-purple-600/20 hover:scale-105 transition">
+                                <div class="flex-shrink-0 p-3 bg-purple-600/20 rounded-full">
+                                    <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 text-sm">Location</p>
+                                    <p class="text-white font-semibold text-lg tracking-wide">Jakarta, Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12">
+                            <h4 class="text-lg font-bold mb-6 text-gradient">Follow Me</h4>
+                            <div class="flex space-x-6 justify-center">
+                                <a href="https://github.com/yourusername" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-primary/30 to-purple-600/30 hover:from-primary/50 hover:to-purple-600/50 border border-primary/30 text-white hover:scale-110 transition">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                                <a href="http://tiktok.com/@_jckchnnn" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-primary/30 to-purple-600/30 hover:from-primary/50 hover:to-purple-600/50 border border-primary/30 text-white hover:scale-110 transition">
+                                    <i class="fab fa-tiktok text-2xl"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@Jack%E3%82%AF" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-primary/30 to-purple-600/30 hover:from-primary/50 hover:to-purple-600/50 border border-primary/30 text-white hover:scale-110 transition">
+                                    <i class="fab fa-youtube text-2xl"></i>
+                                </a>
+                                <a href="https://www.instagram.com/_jck.chn?igsh=Y3JkMnF2Y3o1azlr" target="_blank" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-primary/30 to-purple-600/30 hover:from-primary/50 hover:to-purple-600/50 border border-primary/30 text-white hover:scale-110 transition">
+                                    <i class="fab fa-instagram text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold text-gradient">Bariqh Arrasyid</span>
+                    <p class="text-gray-400 mt-2">Full Stack Developer & UI/UX Enthusiast</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/JackChnnn" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <a href="http://tiktok.com/@_jckchnnn" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Jack%E3%82%AF" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_jck.chn?igsh=Y3JkMnF2Y3o1azlr" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 Bariqh Arrasyid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeProjectModal()"></div>
+        <div class="relative glass rounded-2xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-white hover:text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="p-8">
+                <img id="modalImage" src="" alt="" class="w-full h-64 object-cover rounded-xl mb-6">
+                <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+                <p class="text-gray-400 mb-4"><span id="modalSubtitle"></span></p>
+                <div id="modalTech" class="flex flex-wrap gap-2 mb-6"></div>
+                <p id="modalDescription" class="text-gray-300 mb-6"></p>
+                <div class="flex space-x-4">
+                    <a id="modalGithub" href="#" class="inline-flex items-center glass px-4 py-2 border border-white/10 hover:border-primary/30 text-white rounded-lg transition">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                    <a id="modalLive" href="#" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white rounded-lg transition">
+                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project data
+        const projects = {
+            project1: {
+                title: "Logo Website",
+                subtitle: "Logo modern untuk website HTML, CSS, dan JS",
+                tech: ["HTML", "CSS", "JS"],
+                description: "Logo website modern yang dibuat menggunakan HTML, CSS, dan JavaScript. Desain logo ini responsif, mudah diintegrasikan, dan memberikan tampilan profesional pada berbagai jenis website.",
+                github: "#",
+                live: "#",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732212.png"
+            },
+            project2: {
+                title: "Logo Toko Online",
+                subtitle: "Logo eksklusif untuk aplikasi toko online Laravel",
+                tech: ["Laravel"],
+                description: "Logo eksklusif untuk aplikasi toko online berbasis Laravel. Logo ini dirancang agar mudah dikenali, menarik perhatian pelanggan, dan memperkuat identitas brand toko online Anda.",
+                github: "#",
+                live: "#",
+                image: "https://cdn.worldvectorlogo.com/logos/laravel-2.svg"
+            },
+            project3: {
+                title: "Logo Aplikasi Android",
+                subtitle: "Logo unik untuk aplikasi Android Kotlin",
+                tech: ["Kotlin"],
+                description: "Logo unik untuk aplikasi Android yang dikembangkan dengan Kotlin. Logo ini memiliki gaya visual modern dan mudah diingat, sehingga meningkatkan daya tarik aplikasi di mata pengguna.",
+                github: "#",
+                live: "#",
+                image: "https://cdn.worldvectorlogo.com/logos/kotlin-1.svg"
+            }
+        };
+
+        // Modal functions
+        function openProjectModal(projectId) {
+            const project = projects[projectId];
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalImage').alt = project.title;
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalSubtitle').textContent = project.subtitle;
+            
+            const techContainer = document.getElementById('modalTech');
+            techContainer.innerHTML = '';
+            project.tech.forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'px-3 py-1 bg-primary/10 text-primary text-xs rounded-full';
+                span.textContent = tech;
+                techContainer.appendChild(span);
+            });
+
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalGithub').href = project.github;
+            document.getElementById('modalLive').href = project.live;
+            
+            document.getElementById('projectModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('projectModal').classList.contains('hidden')) {
+                closeProjectModal();
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let isDark = true;
+
+        // Inisialisasi mode dari localStorage jika ada
+        if (localStorage.getItem('theme') === 'light') {
+            isDark = false;
+            document.documentElement.classList.remove('dark');
+            document.body.style.backgroundColor = "#f8fafc";
+            document.body.style.color = "#22223b";
+            themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+        } else {
+            isDark = true;
+            document.documentElement.classList.add('dark');
+            document.body.style.backgroundColor = "#0a0a0a";
+            document.body.style.color = "#e5e7eb";
+            themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+        }
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.body.style.backgroundColor = "#0a0a0a";
+                document.body.style.color = "#e5e7eb";
+                themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.body.style.backgroundColor = "#f8fafc";
+                document.body.style.color = "#22223b";
+                themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Animate skill bars on scroll into view
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Initialize with dark mode
+        document.documentElement.classList.add('dark');
+        
+        // Close modal when clicking links inside it
+        document.querySelectorAll('#projectModal a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

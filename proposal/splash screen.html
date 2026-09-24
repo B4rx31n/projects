@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Splash Screen</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(90deg, #4776e6, #8e54e9);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <h1>Selamat Datang di Website Saya</h1>
+  <p>Loading...</p>
+</div>
+
+<script>
+  // Show splash screen for 2 seconds
+  setTimeout(() => {
+    window.location.href = 'login.html'; // Redirect to login page
+  }, 2000); // 2000 milliseconds = 2 seconds
+</script>
+
+</body>
+</html>

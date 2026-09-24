@@ -1,0 +1,32 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# PHP dependencies
+/vendor/
+vendor/
+
+# Node dependencies
+node_modules/
+
+# Environment (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Databases
+*.sqlite
+*.sqlite-journal
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info
+
+# Logs / caches
+*.log
+.phpunit.result.cache

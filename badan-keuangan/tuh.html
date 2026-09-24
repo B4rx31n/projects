@@ -1,0 +1,396 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Anime Movies & Series
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-roboto-condensed { font-family: 'Roboto Condensed', sans-serif; }
+  /* Custom scrollbar for horizontal scroll */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style>
+ </head>
+ <body class="bg-[#0a0a0a] text-white font-roboto-condensed relative overflow-x-hidden">
+  <!-- Orange top border -->
+  <div class="w-full h-2 bg-[#ff9f00] fixed top-0 left-0 z-50">
+  </div>
+  <!-- Main container -->
+  <div class="max-w-[1280px] mx-auto px-4 pt-6 relative z-40">
+   <!-- Header -->
+   <header class="flex items-center justify-between text-xs sm:text-sm text-white font-orbitron tracking-widest mb-6 select-none">
+    <div class="flex items-center space-x-6">
+     <div class="text-[#ff9f00] font-orbitron text-lg sm:text-xl cursor-pointer select-text" style="letter-spacing: 0.15em;">
+      ANIME
+     </div>
+     <nav class="hidden sm:flex space-x-6 font-semibold">
+      <a class="hover:text-[#ff9f00] transition-colors duration-300" href="series.html">
+       SERIES
+      </a>
+      <a class="hover:text-[#ff9f00] transition-colors duration-300" href="new-releases.html">
+       NEW RELEASES
+      </a>
+      <a class="hover:text-[#ff9f00] transition-colors duration-300" href="popular.html">
+       POPULAR
+      </a>
+      <a class="hover:text-[#ff9f00] transition-colors duration-300" href="actors.html">
+       ACTORS
+      </a>
+      <a class="hover:text-[#ff9f00] transition-colors duration-300" href="blog.html">
+       BLOG
+      </a>
+     </nav>
+    </div>
+    <div class="flex items-center space-x-3">
+     <div class="relative text-gray-300">
+      <input class="bg-[#1a1a1a] rounded-md pl-3 pr-8 py-1 text-xs sm:text-sm placeholder:text-gray-500 focus:outline-none" placeholder="SEARCH MOVIE..." type="text"/>
+      <button class="absolute right-1 top-1.5 text-gray-400 hover:text-[#ff9f00] transition-colors duration-300">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+     <button class="sm:hidden text-white text-xl">
+      <i class="fas fa-bars">
+      </i>
+     </button>
+    </div>
+   </header>
+   <!-- Hero Section -->
+   <section class="relative rounded-lg overflow-hidden mb-12" style="background: linear-gradient(90deg, rgba(10,10,10,0.9) 40%, transparent 100%);">
+    <img alt="Anime hero background with dragon and blonde girl with blue eyes and red flower in hair" class="w-full h-[400px] object-cover absolute top-0 left-0 -z-10" height="400" src="https://storage.googleapis.com/a1aa/image/5e5763c3-fa2d-4641-906d-bf6d7a649bdb.jpg" width="1280"/>
+    <div class="max-w-[600px] p-6 sm:p-10">
+     <img alt="Naruto anime logo with colorful text and pink swirl behind" class="mb-3" height="80" src="https://storage.googleapis.com/a1aa/image/f5af5809-9757-4b2a-674f-88514e18431f.jpg" width="300"/>
+     <div class="flex items-center space-x-2 mb-3 text-xs sm:text-sm font-semibold">
+      <span class="bg-[#1a1a1a] px-2 py-0.5 rounded text-gray-300">
+       12+
+      </span>
+      <span class="bg-[#1a1a1a] px-2 py-0.5 rounded text-gray-300">
+       ANIME
+      </span>
+      <button class="bg-[#1a1a1a] px-2 py-0.5 rounded text-gray-300 hover:bg-[#ff9f00] hover:text-black transition-colors duration-300">
+       WITH SUBTITLES
+      </button>
+     </div>
+     <p class="text-xs sm:text-sm text-gray-300 mb-4 max-w-[500px] leading-relaxed">
+      Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village (Hokage), while seeking recognition and battling inner demons.
+     </p>
+     <div class="flex space-x-3">
+      <button class="text-[#ff9f00] border border-[#ff9f00] rounded px-3 py-1 text-xs sm:text-sm font-semibold hover:bg-[#ff9f00] hover:text-black transition-colors duration-300">
+       WATCH NOW
+      </button>
+      <button class="bg-[#1a1a1a] border border-gray-600 rounded px-3 py-1 text-xs sm:text-sm font-semibold hover:bg-[#ff9f00] hover:text-black transition-colors duration-300">
+       READ DESCRIPTION
+      </button>
+     </div>
+     <div class="flex space-x-1 mt-4 text-[#ff9f00] text-xs select-none">
+      <i class="fas fa-circle">
+      </i>
+      <i class="far fa-circle">
+      </i>
+      <i class="far fa-circle">
+      </i>
+      <i class="far fa-circle">
+      </i>
+     </div>
+    </div>
+   </section>
+   <!-- FILMY DNIA Section -->
+   <section class="mb-10">
+    <h2 class="text-white text-lg sm:text-xl font-semibold mb-4 tracking-wide">
+     MOVIES OF THE DAY
+    </h2>
+    <div class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2">
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Sousou no Frieren anime cover with characters in green field and blue sky" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/94db605f-1d30-4df0-fcd3-41e1d479ef03.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       SOUSOU NO FRIEREN
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Gintama anime cover with white dog and characters in blue sky background" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/3f5699a0-1e8a-4033-8e72-93030ee24178.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       GINTAMA
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Shingeki no Kyojin anime cover with many characters and titans" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/4720ab58-5591-4555-6884-754bab834ff7.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       SHINGEKI NO KYOJIN
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Hunter x Hunter anime cover with main characters in colorful background" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/22743514-c02f-4b14-03b7-352fe0ca11c6.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       HUNTER X HUNTER
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Bleach anime cover with dark red and black theme and characters" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/0f08c5df-63fe-4321-95dc-26cca96911d3.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       BLEACH: SENNEN KESSEN-HEN
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- POPULARNE SERIALE Section -->
+   <section class="mb-10">
+    <h2 class="text-white text-lg sm:text-xl font-semibold mb-4 tracking-wide">
+     POPULAR SERIES
+    </h2>
+    <div class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2">
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Shingeki no Kyojin anime cover with many characters and titans" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/4720ab58-5591-4555-6884-754bab834ff7.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       SHINGEKI NO KYOJIN
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Hunter x Hunter anime cover with main characters in colorful background" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/22743514-c02f-4b14-03b7-352fe0ca11c6.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       HUNTER X HUNTER
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Gintama anime cover with white dog and characters in blue sky background" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/3f5699a0-1e8a-4033-8e72-93030ee24178.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       GINTAMA
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Bleach anime cover with dark red and black theme and characters" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/0f08c5df-63fe-4321-95dc-26cca96911d3.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       BLEACH: SENNEN KESSEN-HEN
+      </p>
+     </div>
+     <div class="relative min-w-[120px] sm:min-w-[140px] cursor-pointer group">
+      <img alt="Sousou no Frieren anime cover with characters in green field and blue sky" class="rounded" height="210" src="https://storage.googleapis.com/a1aa/image/94db605f-1d30-4df0-fcd3-41e1d479ef03.jpg" width="140"/>
+      <div class="absolute top-1 left-1 bg-[#ff9f00] text-black text-[9px] font-bold px-1 rounded select-none">
+       NEW
+      </div>
+      <p class="text-[9px] sm:text-xs mt-1 text-gray-300 select-text">
+       SOUSOU NO FRIEREN
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- NOWOŚCI FILMOWE Section -->
+   <section class="mb-20">
+    <h2 class="text-white text-lg sm:text-xl font-semibold mb-6 tracking-wide">
+     NEW MOVIE RELEASES
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+     <!-- Item 1 -->
+     <div class="flex space-x-3">
+      <img alt="Kaguya-sama wa Kokurasetai anime cover with characters in red and white theme" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/0809c385-04b2-4c89-48ff-6becaf777cca.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        KAGUYA-SAMA WA KOKURASETAI
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 2 -->
+     <div class="flex space-x-3">
+      <img alt="Monster anime cover with dark and intense character face" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/4637407b-327d-4b0b-6753-217382bfb21e.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        MONSTER
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 3 -->
+     <div class="flex space-x-3">
+      <img alt="Shingeki no Kyojin anime cover with many characters and titans" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/4720ab58-5591-4555-6884-754bab834ff7.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        SHINGEKI NO KYOJIN: THE FINAL SEASON
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 4 -->
+     <div class="flex space-x-3">
+      <img alt="Gintama anime cover with white dog and characters in blue sky background" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/3f5699a0-1e8a-4033-8e72-93030ee24178.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        GINTAMA
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 5 -->
+     <div class="flex space-x-3">
+      <img alt="Vinland Saga 2 anime cover with fiery background and characters" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/f2ee8c5b-7dcb-4309-aa81-4b5ec8220b06.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        VINLAND SAGA 2
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 6 -->
+     <div class="flex space-x-3">
+      <img alt="Hajime no Ippo anime cover with boxing characters" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/7fe5bf55-949c-45d8-b1dd-e42e6ab5edff.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        HAJIME NO IPPO
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 7 -->
+     <div class="flex space-x-3">
+      <img alt="Code Geass anime cover with red and black theme and character" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/3f38dd42-8106-4817-c666-41ab10e6a43f.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        CODE GEASS
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 8 -->
+     <div class="flex space-x-3">
+      <img alt="Jujutsu Kaisen 2nd Season anime cover with purple and black theme and characters" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/d31cfe1f-0af5-4c8c-58d2-a4f24a4ed289.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        JUJUTSU KAISEN 2ND SEASON
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+     <!-- Item 9 -->
+     <div class="flex space-x-3">
+      <img alt="Shingeki no Kyojin Final Season 2 anime cover with blue and black theme and characters" class="rounded w-[80px] h-[100px] object-cover flex-shrink-0" height="100" src="https://storage.googleapis.com/a1aa/image/3c21c416-cd58-4faf-acda-3f517482510a.jpg" width="80"/>
+      <div>
+       <h3 class="text-xs sm:text-sm font-semibold mb-1">
+        SHINGEKI NO KYOJIN: THE FINAL SEASON 2
+       </h3>
+       <p class="text-[9px] sm:text-xs text-gray-400 mb-2 leading-tight">
+        Tells the story of Naruto Uzumaki, a young ninja who dreams of becoming the strongest ninja in his village.
+       </p>
+       <button class="text-[#ff9f00] text-[9px] sm:text-xs font-bold hover:underline flex items-center space-x-1">
+        <span>
+         WATCH NOW
+        </span>
+        <i class="fas fa-arrow-right">
+        </i>
+       </button>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div>
+ </body>
+</html>

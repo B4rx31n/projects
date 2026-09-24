@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Pengguna</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding-bottom: 70px;
+      animation: fadeInPage 1s ease-in-out;
+    }
+    @keyframes fadeInPage {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .slide-up {
+      animation: slideUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    header {
+      background: linear-gradient(90deg, #4776e6, #8e54e9);
+      color: white;
+      padding: 20px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .profile-card {
+      background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+      border-radius: 20px;
+      padding: 30px;
+      color: white;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    .profile-card:hover { transform: translateY(-5px); }
+    .profile-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.2);
+      margin-bottom: 20px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease forwards;
+    }
+    .profile-card h2 { margin: 0 0 8px; font-size: 24px; font-weight: 700; }
+    .profile-card p { margin: 4px 0; opacity: 0.9; font-size: 15px; }
+    .profile-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .stat-label {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .button {
+      background: rgba(255,255,255,0.9);
+      color: #2575FC;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+    .button:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+    .project-section {
+      margin-top: 40px;
+    }
+    .project-section h2 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+    .game-list {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .game-item {
+      flex: 0 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 160px;
+      padding: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      color: white;
+    }
+    .game-item:hover { transform: translateY(-5px); }
+    .game-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .action { background: #ff4e50; }
+    .sports { background: #1e90ff; }
+    .simulation { background: #20c997; }
+    .adventure { background: #ff9800; }
+    .rpg { background: #9c27b0; }
+    .racing { background: #607d8b; }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+      border-radius: 20px;
+      padding: 30px;
+      color: white;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      animation: slideUp 0.6s ease forwards;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .close-btn:hover { transform: rotate(90deg); }
+    .back-button-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .back-button {
+      background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+      color: white;
+      padding: 12px 35px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Profil Pengguna</h1>
+  </header>
+  <div class="container fade-in">
+    <div class="profile-section slide-up">
+      <div class="profile-card">
+        <div class="profile-content">
+          <img src="Jack.jpg" alt="Profile Picture" class="profile-pic">
+          <h2>Jack</h2>
+          <p>Web Developer</p>
+          <div class="profile-stats">
+            <div class="stat-item"><div class="stat-value">2+</div><div class="stat-label">Tahun</div></div>
+            <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Proyek</div></div>
+            <div class="stat-item"><div class="stat-value">4.9</div><div class="stat-label">Rating</div></div>
+          </div>
+          <button class="button" onclick="showModal()"><i class="fas fa-info-circle"></i> Lihat Detail</button>
+        </div>
+      </div>
+    </div>
+    <div class="project-section slide-up">
+      <h2>Gallery</h2>
+      <div class="game-list" id="gameListContainer"></div>
+    </div>
+  </div>
+  <div class="modal" id="profile-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Detail Profil</h2>
+      <div class="modal-info">
+        <p><i class="fas fa-briefcase"></i> Web Developer</p>
+        <p><i class="fas fa-envelope"></i> bariqharrasyid@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +62 88742774763</p>
+        <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+        <p><i class="fas fa-certificate"></i> 2+ Tahun Pengalaman</p>
+        <p><i class="fas fa-code-branch"></i> Spesialisasi: Frontend Dev</p>
+      </div>
+    </div>
+  </div>
+  <div class="back-button-container slide-up">
+    <a href="riwayat.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Galeri</a>
+  </div>
+ <script>
+  function showModal() {
+    document.getElementById('profile-modal').style.display = 'flex';
+    document.getElementById('profile-modal').classList.add('fade-in');
+  }
+  function closeModal() {
+    document.getElementById('profile-modal').style.display = 'none';
+  }
+
+  const gameListData = [
+    { title: "God of War: Ragnarok", category: "action", icon: "fas fa-hammer" },
+    { title: "FIFA 23", category: "sports", icon: "fas fa-futbol" },
+    { title: "The Sims 4", category: "simulation", icon: "fas fa-home" },
+    { title: "Minecraft Legends", category: "adventure", icon: "fas fa-cube" },
+    { title: "Elden Ring", category: "rpg", icon: "fas fa-ring" },
+    { title: "Resident Evil 4 Remake", category: "action", icon: "fas fa-skull-crossbones" },
+    { title: "Forza Horizon 5", category: "racing", icon: "fas fa-car" },
+    { title: "GTA V", category: "action", icon: "fas fa-gun" },
+    { title: "Hogwarts Legacy", category: "rpg", icon: "fas fa-hat-wizard" },
+    { title: "Starfield", category: "adventure", icon: "fas fa-rocket" },
+    { title: "Spider-Man 2", category: "action", icon: "fas fa-spider" },
+    { title: "Cyberpunk 2077", category: "rpg", icon: "fas fa-microchip" }
+  ];
+
+  const gradients = {
+    action: 'linear-gradient(135deg, #6A11CB, #2575FC)',
+    rpg: 'linear-gradient(135deg, #11998E, #38EF7D)',
+    sports: 'linear-gradient(135deg, #FDC830, #F37335)',
+    horror: 'linear-gradient(135deg, #870000, #190A05)',
+    simulation: 'linear-gradient(135deg, #00b09b, #96c93d)',
+    adventure: 'linear-gradient(135deg, #ff9966, #ff5e62)',
+    racing: 'linear-gradient(135deg, #bdc3c7, #2c3e50)',
+    default: 'linear-gradient(135deg, #6A11CB, #2575FC)'
+  };
+
+  const gameListContainer = document.getElementById('gameListContainer');
+  gameListData.forEach(game => {
+    const gameDiv = document.createElement('div');
+    gameDiv.className = `game-item ${game.category}`;
+    gameDiv.style.background = gradients[game.category] || gradients.default;
+    gameDiv.innerHTML = `
+      <div class="game-icon"><i class="${game.icon}"></i></div>
+      <p>${game.title}</p>
+    `;
+    gameListContainer.appendChild(gameDiv);
+  });
+</script>
+</body>
+</html>
